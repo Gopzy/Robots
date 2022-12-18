@@ -10,7 +10,6 @@ const initialState = {
 };
 
 const RobotReducer = (state = initialState, action) => {
-  // console.log('Robot Reducer calling>>>>>>>>>', action.type);
   switch (action.type) {
     case FETCH_DATA_REQUEST:
       return {
@@ -18,7 +17,6 @@ const RobotReducer = (state = initialState, action) => {
         robotData: [],
       };
     case FETCH_DATA_SUCCESS:
-      // console.log('FETCH_DATA_SUCCESS :::::::::', action.payload);
       return {
         ...state,
         robotData: action?.payload,

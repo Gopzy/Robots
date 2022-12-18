@@ -21,9 +21,9 @@ const Robots = ({item, index, robots, onPressCart}) => {
       <Text>{material}</Text>
       <View style={{flexDirection: 'row'}}>
         <Text>Created date -</Text>
-        <Text>{moment(createdAt).format('DD-MMM-YY')}</Text>
+        <Text>{moment(createdAt).format('DD-MMM-Y')}</Text>
       </View>
-      <Text>฿ {price}</Text>
+      <Text>LKR {price}</Text>
       <TouchableOpacity
         disabled={robots[index].stock === 0}
         style={{backgroundColor: 'lightgrey'}}

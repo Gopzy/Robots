@@ -2,8 +2,6 @@ import {applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {configureStore} from '@reduxjs/toolkit';
 
-// import rootSaga from './sagas';
-// import rootReducer from './reducers';
 import RobotReducer from './Reducer/RobotsReducer';
 import RobotSaga from './Saga/RobotSaga';
 
