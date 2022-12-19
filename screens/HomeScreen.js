@@ -1,17 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  Alert,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchRobots} from '../store/Action/FetchRobotDataAction';
 import {Dropdown} from 'react-native-material-dropdown';
 import Robots from '../components/RenderBots.component';
 import {materialData} from '../const/MetrialData';
+import HomeScreenStyle from './HomeScreenStyle';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -36,11 +30,11 @@ const HomeScreen = () => {
   }, [robotData]);
 
   // useEffect(() => {
-  //   if (selectedRobotCount > 5) return showAleart();
+  //   if (selectedRobotCount > 5) showAleart();
   // }, [selectedRobotCount]);
 
   const showAleart = () => {
-    Alert.alert('Oops!', "You can't add more than 5 Robots!", [
+    Alert.alert('Oops!', "You can't add more than 6 Robots!", [
       {text: 'OK', onPress: () => console.log('OK Pressed')},
     ]);
   };
@@ -85,9 +79,9 @@ const HomeScreen = () => {
 
   return (
     <>
-      <Text style={styles.headerText}>Robots Home Screen </Text>
-      <View style={styles.filterRow}>
-        <View style={styles.dropdown}>
+      <Text style={HomeScreenStyle.headerText}>Robots Home Screen </Text>
+      <View style={HomeScreenStyle.filterRow}>
+        <View style={HomeScreenStyle.dropdown}>
           <Dropdown
             label="Filter By material"
             data={materialData}
@@ -96,13 +90,17 @@ const HomeScreen = () => {
           />
         </View>
         <TouchableOpacity
-          style={filterDisable ? styles.btnActive : styles.btnDisable}
+          style={
+            filterDisable
+              ? HomeScreenStyle.btnActive
+              : HomeScreenStyle.btnDisable
+          }
           onPress={onPressClear}>
-          <Text style={styles.clearText}>Clear</Text>
+          <Text style={HomeScreenStyle.clearText}>Clear</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.container}>
+      <View style={HomeScreenStyle.container}>
         <FlatList
           data={robots}
           renderItem={(data, index) => RenderBots(data, index)}
@@ -112,43 +110,5 @@ const HomeScreen = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  btnActive: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: 'blue',
-    marginLeft: 20,
-  },
-  btnDisable: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: 'lightgrey',
-    marginLeft: 20,
-  },
-  clearText: {
-    fontSize: 16,
-    color: 'white',
-  },
-  container: {
-    marginTop: 20,
-  },
-  headerText: {
-    fontSize: 16,
-  },
-  filterRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignContent: 'center',
-    alignSelf: 'center',
-  },
-  dropdown: {
-    flex: 0.8,
-  },
-});
 
 export default HomeScreen;

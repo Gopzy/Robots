@@ -1,18 +1,19 @@
 import moment from 'moment';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import BotStyles from './BotsStyle';
 
 const Robots = ({item, index, robots, onPressCart}) => {
   const {name, image, price, stock, createdAt, material} = item;
 
   return (
-    <View style={styles.botStyle}>
-      <View style={styles.stockView}>
-        <Text style={styles.fontWeightMedium}>In Stock </Text>
-        <Text style={styles.fontWeightMedium}>{stock}</Text>
+    <View style={BotStyles.botStyle}>
+      <View style={BotStyles.stockView}>
+        <Text style={BotStyles.fontWeightMedium}>In Stock </Text>
+        <Text style={BotStyles.fontWeightMedium}>{stock}</Text>
       </View>
       <Image
-        style={styles.image}
+        style={BotStyles.image}
         source={{
           uri: image,
         }}
@@ -21,9 +22,9 @@ const Robots = ({item, index, robots, onPressCart}) => {
       <Text>{material}</Text>
       <View style={{flexDirection: 'row'}}>
         <Text>Created date -</Text>
-        <Text>{moment(createdAt).format('DD-MMM-YY')}</Text>
+        <Text>{moment(createdAt).format('DD-MMM-Y')}</Text>
       </View>
-      <Text>฿ {price}</Text>
+      <Text>LKR {price}</Text>
       <TouchableOpacity
         disabled={robots[index].stock === 0}
         style={{backgroundColor: 'lightgrey'}}
@@ -31,8 +32,8 @@ const Robots = ({item, index, robots, onPressCart}) => {
         <Text
           style={
             robots[index].stock > 0
-              ? styles.textAlignCenter
-              : [styles.textAlignCenter, {color: 'grey'}]
+              ? BotStyles.textAlignCenter
+              : [BotStyles.textAlignCenter, {color: 'grey'}]
           }>
           {' '}
           Add to cart
@@ -41,29 +42,5 @@ const Robots = ({item, index, robots, onPressCart}) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  botStyle: {
-    padding: 15,
-    borderWidth: 1,
-    maxHeight: 250,
-    maxWidth: 220,
-    borderRadius: 10,
-    marginTop: 15,
-  },
-  stockView: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  fontWeightMedium: {
-    fontWeight: '500',
-  },
-  image: {
-    width: 50,
-    height: 50,
-  },
-  textAlignCenter: {
-    textAlign: 'center',
-  },
-});
 
 export default Robots;
